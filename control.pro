@@ -1,6 +1,6 @@
 #-------------------------------------------------
 #
-# Project created by QtCreator 2021-12-08T14:21:01
+# Project created by QtCreator 2023-3
 #
 #-------------------------------------------------
 
@@ -8,7 +8,7 @@ QT       += core gui serialport
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
-TARGET = control
+TARGET = Epigynous_Computer
 TEMPLATE = app
 
 # The following define makes your compiler emit warnings if you use
@@ -28,12 +28,12 @@ SOURCES += \
         main.cpp \
         widget.cpp \
     com.cpp \
-    calcfunc.cpp
+#    calcfunc.cpp
 
 HEADERS += \
         widget.h \
     com.h \
-    calcfunc.h
+#    calcfunc.h
 
 FORMS += \
         widget.ui

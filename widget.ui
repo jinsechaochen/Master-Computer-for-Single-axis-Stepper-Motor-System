@@ -6,19 +6,97 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>883</width>
+    <width>913</width>
     <height>522</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>工具</string>
+   <string>单轴步进系统控制工具</string>
   </property>
   <property name="styleSheet">
    <string notr="true"/>
   </property>
-  <layout class="QGridLayout" name="gridLayout_11" rowstretch="4,2,1">
+  <layout class="QGridLayout" name="gridLayout_11" rowstretch="4,0,0,0">
+   <item row="2" column="0">
+    <widget class="QGroupBox" name="groupBox_3">
+     <property name="title">
+      <string>模式选择</string>
+     </property>
+     <layout class="QGridLayout" name="gridLayout_10">
+      <property name="horizontalSpacing">
+       <number>30</number>
+      </property>
+      <item row="0" column="3">
+       <spacer name="horizontalSpacer">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item row="0" column="1">
+       <widget class="QCheckBox" name="checkBoxTwo">
+        <property name="text">
+         <string>寸动</string>
+        </property>
+        <property name="autoExclusive">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="0">
+       <widget class="QCheckBox" name="checkBoxOne">
+        <property name="text">
+         <string>电机控制</string>
+        </property>
+        <property name="checked">
+         <bool>true</bool>
+        </property>
+        <property name="autoExclusive">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="2">
+       <widget class="QCheckBox" name="checkBoxPoint">
+        <property name="text">
+         <string>点动</string>
+        </property>
+        <property name="autoExclusive">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="4">
+       <widget class="QPushButton" name="pushButtonSendMode">
+        <property name="styleSheet">
+         <string notr="true">QPushButton
+{
+	
+	background-color: rgb(255, 85, 0);
+}
+QPushButton::pressed
+{
+	
+	
+	background-color: rgb(42, 218, 165);
+}</string>
+        </property>
+        <property name="text">
+         <string>发送</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
    <item row="0" column="0">
-    <layout class="QGridLayout" name="gridLayout_4" columnstretch="1,1,1">
+    <layout class="QGridLayout" name="gridLayout_4" columnstretch="1,0,0">
      <property name="leftMargin">
       <number>9</number>
      </property>
@@ -31,55 +109,6 @@
      <property name="bottomMargin">
       <number>9</number>
      </property>
-     <item row="0" column="0">
-      <widget class="QGroupBox" name="groupBox">
-       <property name="title">
-        <string>接收信息区</string>
-       </property>
-       <layout class="QGridLayout" name="gridLayout_5">
-        <item row="1" column="2">
-         <widget class="QPushButton" name="pushButtonClearRecv">
-          <property name="text">
-           <string>清空接收</string>
-          </property>
-         </widget>
-        </item>
-        <item row="0" column="0" colspan="3">
-         <widget class="QTextEdit" name="textEditRecv">
-          <property name="readOnly">
-           <bool>false</bool>
-          </property>
-         </widget>
-        </item>
-        <item row="1" column="0">
-         <widget class="QCheckBox" name="checkBoxRecvHex">
-          <property name="text">
-           <string>HEX</string>
-          </property>
-          <property name="checked">
-           <bool>true</bool>
-          </property>
-          <property name="autoExclusive">
-           <bool>true</bool>
-          </property>
-         </widget>
-        </item>
-        <item row="1" column="1">
-         <widget class="QCheckBox" name="checkBoxRecvText">
-          <property name="text">
-           <string>文本显示</string>
-          </property>
-          <property name="checked">
-           <bool>false</bool>
-          </property>
-          <property name="autoExclusive">
-           <bool>true</bool>
-          </property>
-         </widget>
-        </item>
-       </layout>
-      </widget>
-     </item>
      <item row="0" column="1">
       <widget class="QGroupBox" name="groupBox_2">
        <property name="title">
@@ -135,31 +164,6 @@
         <string>点动</string>
        </property>
        <layout class="QGridLayout" name="gridLayout_7">
-        <item row="3" column="0">
-         <widget class="QLabel" name="label_4">
-          <property name="text">
-           <string>速度：</string>
-          </property>
-         </widget>
-        </item>
-        <item row="1" column="1">
-         <layout class="QGridLayout" name="gridLayout_6">
-          <item row="0" column="0">
-           <widget class="QPushButton" name="pushButtonPointAdd">
-            <property name="text">
-             <string>+</string>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="1">
-           <widget class="QPushButton" name="pushButtonPointSub">
-            <property name="text">
-             <string>-</string>
-            </property>
-           </widget>
-          </item>
-         </layout>
-        </item>
         <item row="3" column="1">
          <widget class="QLineEdit" name="lineEditPointSpeed">
           <property name="text">
@@ -172,6 +176,44 @@
            <string/>
           </property>
          </widget>
+        </item>
+        <item row="1" column="1">
+         <layout class="QGridLayout" name="gridLayout_6">
+          <item row="0" column="0">
+           <widget class="QPushButton" name="pushButtonPointAdd">
+            <property name="text">
+             <string>正向</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QPushButton" name="pushButtonPointSub">
+            <property name="text">
+             <string>反向</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item row="3" column="0">
+         <widget class="QLabel" name="label_4">
+          <property name="text">
+           <string>速度：</string>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="1">
+         <spacer name="verticalSpacer_2">
+          <property name="orientation">
+           <enum>Qt::Vertical</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>20</width>
+            <height>40</height>
+           </size>
+          </property>
+         </spacer>
         </item>
         <item row="0" column="1">
          <spacer name="verticalSpacer">
@@ -186,18 +228,61 @@
           </property>
          </spacer>
         </item>
-        <item row="2" column="1">
-         <spacer name="verticalSpacer_2">
-          <property name="orientation">
-           <enum>Qt::Vertical</enum>
+        <item row="3" column="2">
+         <widget class="QLabel" name="label_18">
+          <property name="text">
+           <string>x(10^-4)rad/s</string>
           </property>
-          <property name="sizeHint" stdset="0">
-           <size>
-            <width>20</width>
-            <height>40</height>
-           </size>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </item>
+     <item row="0" column="0">
+      <widget class="QGroupBox" name="groupBox">
+       <property name="title">
+        <string>接收信息区</string>
+       </property>
+       <layout class="QGridLayout" name="gridLayout_5">
+        <item row="1" column="2">
+         <widget class="QPushButton" name="pushButtonClearRecv">
+          <property name="text">
+           <string>清空接收</string>
           </property>
-         </spacer>
+         </widget>
+        </item>
+        <item row="0" column="0" colspan="3">
+         <widget class="QTextEdit" name="textEditRecv">
+          <property name="readOnly">
+           <bool>false</bool>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="0">
+         <widget class="QCheckBox" name="checkBoxRecvHex">
+          <property name="text">
+           <string>HEX</string>
+          </property>
+          <property name="checked">
+           <bool>true</bool>
+          </property>
+          <property name="autoExclusive">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="1">
+         <widget class="QCheckBox" name="checkBoxRecvText">
+          <property name="text">
+           <string>文本显示</string>
+          </property>
+          <property name="checked">
+           <bool>false</bool>
+          </property>
+          <property name="autoExclusive">
+           <bool>true</bool>
+          </property>
+         </widget>
         </item>
        </layout>
       </widget>
@@ -290,7 +375,7 @@
         <item row="3" column="1">
          <widget class="QPushButton" name="pushButtonUpdateCom">
           <property name="styleSheet">
-           <string notr="true">background-color:rgb(255,0,0);</string>
+           <string notr="true">background-color:rgb(127,255,212);</string>
           </property>
           <property name="text">
            <string>刷新串口</string>
@@ -300,31 +385,11 @@
         <item row="1" column="1">
          <widget class="QComboBox" name="comboBoxBaund">
           <property name="currentIndex">
-           <number>3</number>
+           <number>0</number>
           </property>
           <item>
            <property name="text">
-            <string>1200</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>2400</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>4800</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>9600</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>19200</string>
+            <string>115200</string>
            </property>
           </item>
           <item>
@@ -334,7 +399,27 @@
           </item>
           <item>
            <property name="text">
-            <string>115200</string>
+            <string>19200</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>9600</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>4800</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>2400</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>1200</string>
            </property>
           </item>
          </widget>
@@ -359,7 +444,7 @@
         <item row="3" column="0">
          <widget class="QPushButton" name="pushButtonOpen">
           <property name="styleSheet">
-           <string notr="true">background-color:rgb(255,0,0);</string>
+           <string notr="true">background-color:rgb(127,255,212);</string>
           </property>
           <property name="text">
            <string>打开串口</string>
@@ -389,30 +474,9 @@
         <string notr="true"/>
        </property>
        <property name="title">
-        <string>一区</string>
+        <string>电机控制</string>
        </property>
        <layout class="QGridLayout" name="gridLayout_8">
-        <item row="0" column="0">
-         <widget class="QLabel" name="label_5">
-          <property name="text">
-           <string>方向：</string>
-          </property>
-         </widget>
-        </item>
-        <item row="0" column="1">
-         <widget class="QComboBox" name="comboBoxDirOne">
-          <item>
-           <property name="text">
-            <string>反转</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>正转</string>
-           </property>
-          </item>
-         </widget>
-        </item>
         <item row="1" column="0">
          <widget class="QLabel" name="label_6">
           <property name="text">
@@ -420,25 +484,39 @@
           </property>
          </widget>
         </item>
-        <item row="2" column="0">
-         <widget class="QLabel" name="label_7">
-          <property name="text">
-           <string>转速：</string>
-          </property>
+        <item row="0" column="1">
+         <widget class="QComboBox" name="comboBoxDirOne">
+          <item>
+           <property name="text">
+            <string>正转</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>反转</string>
+           </property>
+          </item>
          </widget>
         </item>
-        <item row="1" column="1">
-         <widget class="QLineEdit" name="lineEditAngleOne"/>
-        </item>
-        <item row="4" column="0">
-         <widget class="QLabel" name="label_8">
+        <item row="0" column="0">
+         <widget class="QLabel" name="label_5">
           <property name="text">
-           <string>脉冲数：</string>
+           <string>方向：</string>
           </property>
          </widget>
         </item>
         <item row="2" column="1">
          <widget class="QLineEdit" name="lineEditSpeedOne"/>
+        </item>
+        <item row="1" column="1">
+         <widget class="QLineEdit" name="lineEditAngleOne"/>
+        </item>
+        <item row="5" column="1">
+         <widget class="QPushButton" name="pushButtonSetOne">
+          <property name="text">
+           <string>设置</string>
+          </property>
+         </widget>
         </item>
         <item row="4" column="1">
          <widget class="QLineEdit" name="lineEditPulesOne">
@@ -450,10 +528,38 @@
           </property>
          </widget>
         </item>
-        <item row="3" column="1">
-         <widget class="QPushButton" name="pushButtonSetOne">
+        <item row="4" column="0">
+         <widget class="QLabel" name="label_8">
           <property name="text">
-           <string>设置</string>
+           <string>脉冲数：</string>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="0">
+         <widget class="QLabel" name="label_7">
+          <property name="text">
+           <string>转速：</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="2">
+         <widget class="QLabel" name="label_12">
+          <property name="text">
+           <string>x(10^-4)rad</string>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="2">
+         <widget class="QLabel" name="label_13">
+          <property name="text">
+           <string>x(10^-4)rad/s</string>
+          </property>
+         </widget>
+        </item>
+        <item row="4" column="2">
+         <widget class="QLabel" name="label_14">
+          <property name="text">
+           <string>个</string>
           </property>
          </widget>
         </item>
@@ -466,20 +572,13 @@
         <string notr="true"/>
        </property>
        <property name="title">
-        <string>二区</string>
+        <string>寸动 (梯形加减速)</string>
        </property>
        <layout class="QGridLayout" name="gridLayout">
         <item row="1" column="0">
          <widget class="QLabel" name="label_10">
           <property name="text">
            <string>速度：</string>
-          </property>
-         </widget>
-        </item>
-        <item row="0" column="0">
-         <widget class="QLabel" name="label_11">
-          <property name="text">
-           <string>长度：</string>
           </property>
          </widget>
         </item>
@@ -497,6 +596,19 @@
           </item>
          </widget>
         </item>
+        <item row="0" column="1">
+         <widget class="QLineEdit" name="lineEditLengthTwo"/>
+        </item>
+        <item row="0" column="0">
+         <widget class="QLabel" name="label_11">
+          <property name="text">
+           <string>长度：</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="1">
+         <widget class="QLineEdit" name="lineEditSpeedTwo"/>
+        </item>
         <item row="2" column="0">
          <widget class="QLabel" name="label_9">
           <property name="text">
@@ -504,93 +616,30 @@
           </property>
          </widget>
         </item>
-        <item row="1" column="1">
-         <widget class="QLineEdit" name="lineEditSpeedTwo"/>
+        <item row="0" column="2">
+         <widget class="QLabel" name="label_15">
+          <property name="text">
+           <string>x(10^-2)mm</string>
+          </property>
+         </widget>
         </item>
-        <item row="0" column="1">
-         <widget class="QLineEdit" name="lineEditLengthTwo"/>
+        <item row="1" column="2">
+         <widget class="QLabel" name="label_16">
+          <property name="text">
+           <string>x(10^-4)rad/s</string>
+          </property>
+         </widget>
         </item>
        </layout>
       </widget>
      </item>
     </layout>
    </item>
-   <item row="2" column="0">
-    <widget class="QGroupBox" name="groupBox_3">
-     <property name="title">
-      <string>模式选择</string>
+   <item row="3" column="0">
+    <widget class="QLabel" name="label_17">
+     <property name="text">
+      <string>Author: DuskyBook    Github : https://github.com/jinsechaochen/Epigynous-Computer-for-Single-axis-Stepper-Motor-System     Version: 2.0</string>
      </property>
-     <layout class="QGridLayout" name="gridLayout_10">
-      <property name="horizontalSpacing">
-       <number>30</number>
-      </property>
-      <item row="0" column="3">
-       <spacer name="horizontalSpacer">
-        <property name="orientation">
-         <enum>Qt::Horizontal</enum>
-        </property>
-        <property name="sizeHint" stdset="0">
-         <size>
-          <width>40</width>
-          <height>20</height>
-         </size>
-        </property>
-       </spacer>
-      </item>
-      <item row="0" column="1">
-       <widget class="QCheckBox" name="checkBoxTwo">
-        <property name="text">
-         <string>二区</string>
-        </property>
-        <property name="autoExclusive">
-         <bool>true</bool>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="0">
-       <widget class="QCheckBox" name="checkBoxOne">
-        <property name="text">
-         <string>一区</string>
-        </property>
-        <property name="checked">
-         <bool>true</bool>
-        </property>
-        <property name="autoExclusive">
-         <bool>true</bool>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="2">
-       <widget class="QCheckBox" name="checkBoxPoint">
-        <property name="text">
-         <string>点动</string>
-        </property>
-        <property name="autoExclusive">
-         <bool>true</bool>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="4">
-       <widget class="QPushButton" name="pushButtonSendMode">
-        <property name="styleSheet">
-         <string notr="true">QPushButton
-{
-	
-	background-color: rgb(255, 85, 0);
-}
-QPushButton::pressed
-{
-	
-	
-	background-color: rgb(42, 218, 165);
-}</string>
-        </property>
-        <property name="text">
-         <string>发送</string>
-        </property>
-       </widget>
-      </item>
-     </layout>
     </widget>
    </item>
   </layout>

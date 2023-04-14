@@ -1,9 +1,9 @@
 ﻿#include "com.h"
 
-#pragma execution_character_set("utf-8")
+#pragma execution_character_set("utf-8")  //设置编码格式
 
 
-Com::Com(QObject *parent) : QObject(parent)
+Com::Com(QObject *parent) : QObject(parent)  //类的构造函数
 {
     //创建串口类实例
     m_pSerial = new QSerialPort;
@@ -25,7 +25,7 @@ Com::Com(QObject *parent) : QObject(parent)
     });
 }
 
-void Com::SerialRecvData()
+void Com::SerialRecvData()  //接受数据的槽函数
 {
     //读取串口中所有数据
     QByteArray arr = m_pSerial->readAll();
@@ -39,7 +39,7 @@ void Com::SerialRecvData()
     m_pRecvTimer->start(30);
 }
 
-bool Com::OpenCom(QString strName, int iBaud, int iData, int iStop, int iParty)
+bool Com::OpenCom(QString strName, int iBaud, int iData, int iStop, int iParty) //打开串口的函数
 {
     if(m_pSerial->isOpen())
     {
@@ -66,7 +66,7 @@ bool Com::OpenCom(QString strName, int iBaud, int iData, int iStop, int iParty)
     return true;
 }
 
-bool CompareString(QString& strA, QString& strB)
+bool CompareString(QString& strA, QString& strB) //用于排序
 {
 	int iCom1 = strA.right(strA.length() - 3).toInt();
 	int iCom2 = strB.right(strB.length() - 3).toInt();
@@ -74,7 +74,7 @@ bool CompareString(QString& strA, QString& strB)
 	return iCom1 < iCom2 ? true : false;
 }
 
-QStringList Com::GetComAll()
+QStringList Com::GetComAll()  //获取电脑中可用串口
 {
     QStringList listCom;
     //获取电脑中所有可用的串口
@@ -89,7 +89,7 @@ QStringList Com::GetComAll()
     return listCom;
 }
 
-void Com::CloseComs()
+void Com::CloseComs()  //关闭串口
 {
     //关闭串口
     if(m_pSerial->isOpen())
@@ -98,61 +98,63 @@ void Com::CloseComs()
     }
 }
 
-QByteArray Com::HexStringToByte(QString str)
+QByteArray Com::HexStringToByte(QString str)  //将一个16进制的字符串转化为字节数组
+
 {
 	QByteArray arr;
 
-	int len = str.size();
+    int len = str.size();  //获取字符串长度
 	QString strTemp;
-	for (int i = 0; i < len; i++)
+    for (int i = 0; i < len; i++) //遍历字符串中每一个字符
 	{
-		if (str.at(i) != " ")
+        if (str.at(i) != " ")  //如果该字符非空格
 		{
-			strTemp.append(str.at(i));
-			if (strTemp.length() >= 2)
+            strTemp.append(str.at(i));  //将该字符添加到临时字符串里
+            if (strTemp.length() >= 2)  //如果临时字符串中字符个数达到了2
 			{
 				bool bOk = false;
-				char cTemp = strTemp.toUShort(&bOk, 16);
-				if (bOk)
+                char cTemp = strTemp.toUShort(&bOk, 16); //将临时字符串中的字符转化为一个16进制的数值
+                if (bOk)  //如果转换成功
 				{
-					arr.append(cTemp);
+                    arr.append(cTemp);  //将该16进制数值转化为一个char类型的值，并添加到字节数组中
+
 				}
-				strTemp.clear();
+                strTemp.clear();  //清空临时字符串
 			}
 		}
-		else
+        else  //如果该字符是空格
 		{
-			if (strTemp.length() > 0)
+            if (strTemp.length() > 0)  //如果临时字符串中已经有字符了
 			{
 				bool bOk = false;
-				char cTemp = strTemp.toUShort(&bOk, 16);
-				if (bOk)
+                char cTemp = strTemp.toUShort(&bOk, 16);  //将临时字符串中的字符转化为一个16进制的数值
+                if (bOk)  //如果转换成功
 				{
-					arr.append(cTemp);
+                    arr.append(cTemp);  //将该16进制数值转化为一个char类型的值，并添加到字节数组中
 				}
-				strTemp.clear();
+                strTemp.clear();  //清空临时字符串
 			}
-			strTemp.clear();
+            strTemp.clear();  //清空临时字符串
 		}
 	}
 
-	if (strTemp.length() > 0)
+    if (strTemp.length() > 0)  //如果最后一个临时字符串中还有字符
 	{
 		bool bOk = false;
-		char cTemp = strTemp.toUShort(&bOk, 16);
-		if (bOk)
+        char cTemp = strTemp.toUShort(&bOk, 16);  //将临时字符串中的字符转化为一个16进制的数值
+        if (bOk)  //如果转换成功
 		{
-			arr.append(cTemp);
+            arr.append(cTemp);  //将该16进制数值转化为一个char类型的值，并添加到字节数组中
 		}
-		strTemp.clear();
+        strTemp.clear();  //清空临时字符串
 	}
-	return arr;
+    return arr;  //返回转化后的字节数组
 }
 
 QString Com::ByteToHexString(QByteArray arr)
 {
     QString strInfo;
-    for(int i = 0; i < arr.size(); i++)
+    for(int i = 0; i < arr.size(); i++)  //遍历字节数组中的每一个char类型的值
     {
         //将char数据转化为占2个位的十六进制字符
         strInfo += QString("%1 ").arg(arr.at(i) & 0xff, 2, 16, QLatin1Char('0'));
@@ -161,28 +163,34 @@ QString Com::ByteToHexString(QByteArray arr)
     return strInfo;
 }
 
-bool Com::SendInfo(QByteArray arr)
+bool Com::SendInfo(QByteArray arr)  // 发送字节数组到串口并返回发送状态
 {
-    if(m_pSerial->isOpen())
+    if(m_pSerial->isOpen())  // 如果串口已经打开
     {
         //发送数据
 		emit SendByteSignal(arr);
-        m_pSerial->write(arr);
+        m_pSerial->write(arr);   // 向串口写入字节数组
 		return true;
     }
-    else
+    else  // 如果串口未打开
 	{
-        QMessageBox::warning(NULL, QString(tr("提示")), QString(tr("串口未打开")));
+        QMessageBox::warning(NULL, QString(tr("提示")), QString(tr("串口未打开")));// 返回失败状态
 		return false;
     }
 }
 
-bool Com::IsOpenCom()
+bool Com::IsOpenCom()  // 判断串口是否打开
 {
     //判断串口是否打开
     return m_pSerial->isOpen();
 }
-
+/*
+ *这是一个包含256个无符号字符（unsigned char）的数组，名为auchCRCHi。
+ *每个元素都用16进制表示，并且有一个特定的值。这个数组的值是一个CRC-16循环冗余校验的高位字节表，它用于计算任意二进制数据的校验和。
+ *RC校验是一种广泛应用于通信和数据存储的检验和算法，用于检测数据传输中的错误。
+ *具体而言，它将数据视为多项式，使用除法来生成校验和，以检测在数据传输过程中发生的任何错误。
+ *在使用CRC校验时，通常会预定义这样的高位字节表和低位字节表，用于计算数据的校验和。
+*/
 const unsigned char auchCRCHi[] =
 {
 	0x00, 0xC1, 0x81, 0x40, 0x01, 0xC0, 0x80, 0x41, 0x01, 0xC0, 0x80, 0x41, 0x00, 0xC1, 0x81,
